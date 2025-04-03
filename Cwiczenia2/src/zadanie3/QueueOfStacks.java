@@ -58,22 +58,22 @@ public class QueueOfStacks <T> implements IQueue<T> {
 
     public void printQueue() {
         if (isEmpty()) {
-            System.out.println("(empty)");
             return;
         }
 
-        Stack<T> tempIn = (Stack<T>) inStack.clone();
+
+        @SuppressWarnings("unchecked")
         Stack<T> tempOut = (Stack<T>) outStack.clone();
-
-        Stack<T> display = new Stack<>();
         while (!tempOut.isEmpty()) {
-            display.push(tempOut.pop());
+            System.out.print(tempOut.pop() + " ");
         }
 
-        while (!tempIn.isEmpty()) {
-            display.insertElementAt(tempIn.pop(), 0);
+        @SuppressWarnings("unchecked")
+        T[] inArray = (T[]) inStack.toArray();
+        for (int i = 0; i < inArray.length; i++) {
+            System.out.print(inArray[i] + " ");
         }
 
-        display.forEach(System.out::println);
+        System.out.println();
     }
 }
