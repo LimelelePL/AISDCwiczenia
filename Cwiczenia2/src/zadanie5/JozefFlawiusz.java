@@ -14,19 +14,19 @@ public class JozefFlawiusz {
         }
 
         while (queue.size() > 1) {
-            System.out.println();
             queue.printQueue();
             for (int i = 1; i < k; i++) {
                 queue.enqueue(queue.dequeue());
             }
             queue.dequeue();
+            System.out.println();
         }
 
         return queue.dequeue();
     }
 
     public static void main(String[] args) throws IQueue.EmptyQueueException {
-        int f= flawiusz(6,2);
+        int f= flawiusz(8,3);
         System.out.println(f);
     }
 

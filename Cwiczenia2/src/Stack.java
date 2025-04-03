@@ -43,12 +43,10 @@ public class Stack<E> implements IStack<E> {
     @Override
     public void push(E elem) throws FullStackException {
         Node<E> node = new Node<>(elem);
-        if (isEmpty()) {
-            top = node;
-        } else {
+        if (!isEmpty()) {
             node.next = top;
-            top = node;
         }
+        top = node;
         size++;
     }
 
@@ -59,6 +57,9 @@ public class Stack<E> implements IStack<E> {
 
     @Override
     public E top() throws EmptyStackException {
+        if(isEmpty()) {
+            throw new EmptyStackException();
+        }
         return top.value;
     }
 
@@ -70,7 +71,21 @@ public class Stack<E> implements IStack<E> {
         }
     }
 
-    //zadanie 2
+    private void insertAtBottom(E element) throws EmptyStackException, FullStackException {
+        Stack<E> temp = new Stack<>();
+
+        while (!this.isEmpty()) {
+            temp.push(this.pop());
+        }
+
+        this.push(element);
+
+        while (!temp.isEmpty()) {
+            this.push(temp.pop());
+        }
+    }
+
+
     public void reverse() throws EmptyStackException, FullStackException {
         Stack<E> tempStack = new Stack<>();
 
@@ -80,17 +95,7 @@ public class Stack<E> implements IStack<E> {
 
         while (!tempStack.isEmpty()) {
             E element = tempStack.pop();
-            insertAtBottom(element);
-        }
-    }
-
-    private void insertAtBottom(E element) throws EmptyStackException, FullStackException {
-        if (this.isEmpty()) {
-            this.push(element);
-        } else {
-            E temp = this.pop();
-            insertAtBottom(element);
-            this.push(temp);
+           insertAtBottom(element);
         }
     }
 

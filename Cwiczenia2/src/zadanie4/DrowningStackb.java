@@ -32,8 +32,8 @@ public class DrowningStackb<E> implements IStack<E>{
 
     @Override
     public E pop() throws EmptyStackException {
-        if(isEmpty())
-            throw new EmptyStackException();
+        if(isEmpty()) throw new EmptyStackException();
+
         topIndex = (topIndex - 1 + capacity) % capacity;
         E value = array[topIndex];
         size--;

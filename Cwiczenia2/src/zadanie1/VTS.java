@@ -1,5 +1,7 @@
 package zadanie1;
 
+import java.util.NoSuchElementException;
+
 public class VTS<E> implements IStack<E> {
     private Node<E> top;
     private int size;
@@ -27,10 +29,13 @@ public class VTS<E> implements IStack<E> {
         if(current != null){
             current = current.next;
         } else {
-            throw new IllegalArgumentException("achieved last element of stack");
+            throw new NoSuchElementException();
         }
     }
     public void up(){
+        if(isEmpty()){
+            throw new NoSuchElementException();
+        }
         current = top;
     }
 
@@ -62,13 +67,10 @@ public class VTS<E> implements IStack<E> {
     @Override
     public void push(E elem) throws FullStackException {
         Node<E> node=new Node<>(elem);
-        if(isEmpty()){
-            top=node;
+        if (!isEmpty()) {
+            node.next = top;
         }
-        else{
-            node.next=top;
-            top=node;
-        }
+        top=node;
         current=top;
         size++;
     }
@@ -80,6 +82,9 @@ public class VTS<E> implements IStack<E> {
 
     @Override
     public E top() throws EmptyStackException {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return top.value;
     }
 

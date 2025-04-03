@@ -8,6 +8,7 @@ public class Main {
 
        System.out.println("PRZED:");
        s.printStack();
+       System.out.println();
 
        s.reverse();
 
