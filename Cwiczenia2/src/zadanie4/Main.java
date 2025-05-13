@@ -2,7 +2,7 @@ package zadanie4;
 
 public class Main {
     public static void main(String[] args) throws IStack.FullStackException {
-        DrowningStack<Integer> stack = new DrowningStack(4);
+        DrowningStackb<Integer> stack = new DrowningStackb<>(4);
 
         stack.push(1);
         stack.push(2);

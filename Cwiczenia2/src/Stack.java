@@ -84,7 +84,7 @@ public class Stack<E> implements IStack<E> {
             this.push(temp.pop());
         }
     }
-
+//1234-4321
 
     public void reverse() throws EmptyStackException, FullStackException {
         Stack<E> tempStack = new Stack<>();

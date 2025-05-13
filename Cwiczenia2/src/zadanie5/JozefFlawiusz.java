@@ -6,20 +6,17 @@ import zadanie3.QueueOfStacks;
 public class JozefFlawiusz {
 
     public static int flawiusz(int n, int k) throws IQueue.EmptyQueueException {
-        int index=0;
         QueueOfStacks<Integer> queue = new QueueOfStacks<>();
 
         for (int i = 1; i <= n; i++) {
             queue.enqueue(i);
         }
-
+        queue.printQueue();
         while (queue.size() > 1) {
-            queue.printQueue();
             for (int i = 1; i < k; i++) {
                 queue.enqueue(queue.dequeue());
             }
             queue.dequeue();
-            System.out.println();
         }
 
         return queue.dequeue();

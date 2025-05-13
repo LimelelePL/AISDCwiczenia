@@ -5,7 +5,6 @@ public class DrowningStack<E> implements IStack<E> {
     private E[] array;
     private int topIndex;
     private int capacity;
-    private int size=0;
 
 
     public DrowningStack(int capacity ) {
@@ -17,12 +16,12 @@ public class DrowningStack<E> implements IStack<E> {
 
     @Override
     public boolean isEmpty() {
-        return size==0;
+        return topIndex==0;
     }
 
     @Override
     public boolean isFull() {
-        return size==array.length;
+        return topIndex==array.length;
     }
 
     @Override
@@ -32,23 +31,21 @@ public class DrowningStack<E> implements IStack<E> {
         return array[--topIndex];
     }
 
-
     @Override
-    public void push(E elem) throws FullStackException {
+    public void push(E elem){
         if (isFull()) {
             for (int i = 1; i < capacity; i++) {
                 array[i - 1] = array[i];
             }
             array[capacity - 1] = elem;
         } else {
-            size++;
             array[topIndex++] = elem;
         }
     }
 
     @Override
     public int size() {
-        return size;
+        return topIndex;
     }
 
     @Override

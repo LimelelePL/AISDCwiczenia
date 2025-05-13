@@ -12,7 +12,7 @@ public class VTS<E> implements IStack<E> {
         size = 0;
     }
 
-    static class Node<E>{
+    private static class Node<E>{
         E value;
         Node<E> next;
 
